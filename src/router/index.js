@@ -12,13 +12,13 @@ const router = createRouter({
       name: 'start',
       component: HomeView,
     },
-    { // Vy för att visa information
-      path: '/info',
+    { // Vy för att visa information om vue
+      path: '/om-vue',
       name: 'info',
       component: InfoView,
     },
-    { // Vy för att visa data
-      path: '/data',
+    { // Vy för att visa data för resor
+      path: '/resor',
       name: 'data',
       component: DataView,
     }

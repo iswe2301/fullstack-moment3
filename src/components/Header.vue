@@ -21,10 +21,10 @@
                             <router-link class="nav-link" to="/" active-class="active" @click="closeMenu">Hem</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/data" active-class="active" @click="closeMenu">Fritidsintresse</router-link>
+                            <router-link class="nav-link" to="/resor" active-class="active" @click="closeMenu">Resor</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/info" active-class="active" @click="closeMenu">Om Vue</router-link>
+                            <router-link class="nav-link" to="/om-vue" active-class="active" @click="closeMenu">Om Vue</router-link>
                         </li>
                     </ul>
                 </div>
