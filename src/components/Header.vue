@@ -62,10 +62,11 @@ export default {
 .navbar .nav-link {
     color: white !important;
     font-weight: bold;
+    margin: 0 1.5rem;
 }
 
 .navbar .nav-link.active {
-    color: #ffe75d !important;
+    color: rgba(33, 37, 41, 1) !important;
 }
 
 .navbar-toggler {
