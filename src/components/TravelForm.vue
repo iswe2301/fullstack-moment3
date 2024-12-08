@@ -14,6 +14,12 @@
       <input v-model="travel.place" id="place" type="text" class="form-control" placeholder="Ange en plats..." />
     </div>
     <div class="mb-3">
+      <label for="description" class="form-label">Beskrivning</label>
+      <!-- Använd v-model för att binda textarea-fältet till travel-objektet -->
+      <textarea v-model="travel.description" id="description" placeholder="Beskriv ditt resmål..." class="form-control"
+        rows="5"></textarea>
+    </div>
+    <div class="mb-3">
       <label for="visited" class="form-label">Besökt</label>
       <!-- Använd v-model för att binda select-fältet till travel-objektet -->
       <select v-model="travel.visited" id="visited" class="form-control">
@@ -23,21 +29,16 @@
         <option :value="false">Nej</option>
       </select>
     </div>
-    <div class="mb-3">
-      <label for="rating" class="form-label">Betyg (1-10)</label>
-      <!-- Använd v-model för att binda input-fältet till travel-objektet -->
-      <input v-model="travel.rating" id="rating" type="number" placeholder="Ange en betyg..." class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label for="description" class="form-label">Beskrivning</label>
-      <!-- Använd v-model för att binda textarea-fältet till travel-objektet -->
-      <textarea v-model="travel.description" id="description" placeholder="Ange en beskrivning..." class="form-control"
-        rows="5"></textarea>
-    </div>
-    <div class="mb-3">
-      <label for="visitDate" class="form-label">Besöksdatum</label>
-      <!-- Använd v-model för att binda input-fältet till travel-objektet -->
-      <input v-model="travel.visitDate" id="visitDate" type="date" class="form-control" />
+    <!-- Kontrollera om resan är besökt och visa ytterligare fält -->
+    <div v-if="travel.visited === true">
+      <div class="mb-3">
+        <label for="visitDate" class="form-label">Besöksdatum</label>
+        <input v-model="travel.visitDate" id="visitDate" type="date" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="rating" class="form-label">Betyg</label>
+        <input v-model="travel.rating" id="rating" type="number" placeholder="1-10" class="form-control" />
+      </div>
     </div>
     <button type="submit" class="btn btn-primary submit-btn">
       <!-- Visa knapp-text beroende på om formuläret används för redigering eller lägg till -->
@@ -112,7 +113,7 @@ export default {
     // Metod för att lägga till en resa
     async addTravel() {
       try {
-        
+
         // Anropa metoden för att filtrera bort tomma värden
         this.travel = this.filterEmptyFields(this.travel);
 
@@ -191,6 +192,7 @@ export default {
         rating: null,
         visited: true,
         visitDate: '',
+        description: '',
       };
       this.isEditing = false; // Återställ redigeringsläge
     },
