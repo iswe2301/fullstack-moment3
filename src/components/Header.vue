@@ -1,6 +1,6 @@
 <template>
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container d-flex justify-content-between">
                 <!-- Branding (logo) -->
                 <router-link class="navbar-brand" to="/">ISAWESTLING</router-link>
@@ -17,13 +17,14 @@
                     <ul class="navbar-nav">
                         <!-- Routerlinks för att navigera mellan sidor -->
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/" active-class="active">Hem</router-link>
+                            <!-- Händelsehanterare för att stänga menyn när en länk klickas -->
+                            <router-link class="nav-link" to="/" active-class="active" @click="closeMenu">Hem</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/data" active-class="active">Fritidsintresse</router-link>
+                            <router-link class="nav-link" to="/data" active-class="active" @click="closeMenu">Fritidsintresse</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/info" active-class="active">Om Vue</router-link>
+                            <router-link class="nav-link" to="/info" active-class="active" @click="closeMenu">Om Vue</router-link>
                         </li>
                     </ul>
                 </div>
@@ -36,6 +37,13 @@
 // Exportera komponenten
 export default {
     name: 'Header',
+    methods: {
+        // Metod för att stänga menyn när en länk klickas
+        closeMenu() {
+            // Ta bort klassen show från menyn för att dölja den
+            document.querySelector('.navbar-collapse').classList.remove('show');
+        }
+    }
 };
 </script>
 
@@ -48,6 +56,7 @@ export default {
 }
 .navbar {
     background-color: #ff8c00;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .nav-link {
