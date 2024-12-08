@@ -4,12 +4,12 @@
     <!-- Visa rubrik beroende på om formuläret används för redigering eller lägg till -->
     <h3 class="mb-4">{{ isEditing ? 'Uppdatera resa' : 'Lägg till ny resa' }}</h3>
     <div class="mb-3">
-      <label for="country" class="form-label">Land</label>
+      <label for="country" class="form-label">Land <span class="obligated">*</span></label>
       <!-- Använd v-model för att binda input-fältet till travel-objektet -->
       <input v-model="travel.country" id="country" type="text" class="form-control" placeholder="Ange ett land..." />
     </div>
     <div class="mb-3">
-      <label for="place" class="form-label">Plats</label>
+      <label for="place" class="form-label">Plats <span class="obligated">*</span></label>
       <!-- Använd v-model för att binda input-fältet till travel-objektet -->
       <input v-model="travel.place" id="place" type="text" class="form-control" placeholder="Ange en plats..." />
     </div>
@@ -20,7 +20,7 @@
         rows="5"></textarea>
     </div>
     <div class="mb-3">
-      <label for="visited" class="form-label">Besökt</label>
+      <label for="visited" class="form-label">Besökt <span class="obligated">*</span></label>
       <!-- Använd v-model för att binda select-fältet till travel-objektet -->
       <select v-model="travel.visited" id="visited" class="form-control">
         <!-- Använd :value för att binda värdet till true eller false -->
@@ -201,6 +201,16 @@ export default {
 </script>
 
 <style scoped>
+/* Custom CSS för att styla formuläret */
+label {
+  font-weight: bold;
+}
+
+.obligated {
+  color: red;
+  font-weight: bold;
+}
+
 @media (max-width: 576px) {
   .submit-btn {
     width: 100%;
