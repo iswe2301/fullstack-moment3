@@ -84,7 +84,10 @@ export default {
     },
     // Metod för att redigera en resa
     editTravel(travel) {
-      this.travelToEdit = travel; // Skicka resan till formuläret för redigering
+      this.travelToEdit = {
+        ...travel, // Kopiera travel-objektet
+        visitDate: travel.visitDate ? new Date(travel.visitDate).toISOString().split('T')[0] : '' // Formatera datumet till ÅÅÅÅ-MM-DD eller tom sträng
+      };
     },
     // Metod för att hantera tillagd eller uppdaterad resa (success-meddelanden)
     handleAddedTravel(action) {
