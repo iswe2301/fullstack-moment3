@@ -11,3 +11,14 @@ const app = createApp(App)
 app.use(router)
 
 app.mount('#app')
+
+// Vänta tills att DOM är laddad
+document.addEventListener('DOMContentLoaded', function () {
+    // Aktivera Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        // Returnera tooltip
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+});
+
