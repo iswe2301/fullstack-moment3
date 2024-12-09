@@ -185,8 +185,14 @@ export default {
     },
     // Metod för filtrera bort tomma värden från objektet
     filterEmptyFields(data) {
+      // Array med valfria fält
+      const optionalFields = ['rating', 'visitDate'];
+      // Returnera objektet med endast fält som inte är tomma
       return Object.fromEntries(
-        Object.entries(data).filter(([_, value]) => value !== null && value !== '')
+        Object.entries(data).filter(([key, value]) =>
+        // Kontrollera om fältet inte finns i optionalFields eller om värdet inte är tomt
+          !optionalFields.includes(key) || (value !== null && value !== '')
+        )
       );
     },
     // Metod för att rensa formuläret
