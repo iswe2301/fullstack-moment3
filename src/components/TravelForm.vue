@@ -29,14 +29,19 @@
         <option :value="false">Nej</option>
       </select>
     </div>
-    <!-- Kontrollera om resan är besökt och visa ytterligare fält -->
-    <div v-if="travel.visited === true">
+    <!-- Visa fält för besöksdatum och betyg om resan är besökt -->
+    <div v-show="travel.visited === true">
       <div class="mb-3">
         <label for="visitDate" class="form-label">Besöksdatum</label>
         <input v-model="travel.visitDate" id="visitDate" type="date" class="form-control" />
       </div>
       <div class="mb-3">
-        <label for="rating" class="form-label">Betyg</label>
+        <!-- Tooltip för att visa information om betyg -->
+        <label for="rating" class="form-label">Betyg <span class="text-muted" data-bs-toggle="tooltip"
+            data-bs-placement="top" data-bs-html="true" title="1 = lägsta betyg<br>10 = högsta betyg">
+            <i class="bi bi-info-circle"></i>
+          </span>
+        </label>
         <input v-model="travel.rating" id="rating" type="number" placeholder="1-10" class="form-control" />
       </div>
     </div>
@@ -197,7 +202,7 @@ export default {
       this.isEditing = false; // Återställ redigeringsläge
     },
   },
-};
+}
 </script>
 
 <style scoped>
