@@ -11,8 +11,6 @@ const app = createApp(App)
 
 app.use(router)
 
-app.mount('#app')
-
 // Vänta tills att DOM är laddad
 document.addEventListener('DOMContentLoaded', function () {
     // Aktivera Bootstrap tooltips
@@ -23,3 +21,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+app.mount('#app')

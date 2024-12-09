@@ -74,10 +74,10 @@ export default {
       travel: {
         country: '',
         place: '',
-        rating: null,
-        visited: '',
-        visitDate: null,
         description: '',
+        visited: null,
+        visitDate: null,
+        rating: null
       },
       isEditing: false, // Om formuläret används för redigering
       errors: [], // Felmeddelanden
@@ -190,7 +190,7 @@ export default {
       // Returnera objektet med endast fält som inte är tomma
       return Object.fromEntries(
         Object.entries(data).filter(([key, value]) =>
-        // Kontrollera om fältet inte finns i optionalFields eller om värdet inte är tomt
+          // Kontrollera om fältet inte finns i optionalFields eller om värdet inte är tomt
           !optionalFields.includes(key) || (value !== null && value !== '')
         )
       );
@@ -207,6 +207,13 @@ export default {
       };
       this.isEditing = false; // Återställ redigeringsläge
     },
+  },
+  mounted() {
+    // Aktivera Bootstrap-tooltips 
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   },
 }
 </script>
