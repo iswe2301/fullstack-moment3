@@ -102,8 +102,49 @@ export default {
   },
   // Metoder för komponenten
   methods: {
+    // Metod för att validera formuläret
+    validateForm() {
+
+      // Rensa tidigare felmeddelanden
+      this.errors = [];
+
+      // Hämta fälten från travel-objektet
+      const { country, place, description, rating, visited, visitDate } = this.travel;
+
+      // Validera land och plats
+      if (!country) this.errors.push("Du måste ange ett land.");
+      if (!place) this.errors.push("Du måste ange en plats.");
+
+      // Validera beskrivningens längd om den finns
+      if (description && description.length > 500) {
+        this.errors.push("Beskrivningen får max vara 500 tecken.");
+      }
+
+      // Validera betyg (mellan 1 och 10 och ett heltal) om betyg är angivet
+      if (rating !== null && rating !== "" && !isNaN(rating)) {
+        if (rating < 1 || rating > 10 || !Number.isInteger(Number(rating))) {
+          this.errors.push("Betyget måste vara ett heltal mellan 1 och 10.");
+        }
+      }
+
+      // Validera om användaren angett om platsen är besökt eller inte
+      if (visited === null) this.errors.push("Du måste ange om du har besökt platsen eller inte.");
+
+      // Validera besöksdatum om det är angivet
+      if (visitDate) {
+        if (isNaN(Date.parse(visitDate)) || new Date(visitDate) > new Date()) {
+          this.errors.push("Du måste ange ett giltigt datum som inte är i framtiden.");
+        }
+      }
+
+      return this.errors.length === 0; // Returnera true om inga fel hittas
+    },
     // Metod för att hantera formuläret
     async handleSubmit() {
+      // Validera formuläret
+      if (!this.validateForm()) {
+        return; // Avbryt om validering misslyckas
+      }
       // Rensa tidigare felmeddelanden
       this.errors = [];
       // Kontrollera om formuläret används för redigering eller lägg till
