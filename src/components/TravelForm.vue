@@ -1,6 +1,6 @@
 <template>
   <!-- Formulär för att lägga till eller redigera resor, anropa metoder för att lägga till eller uppdatera resor vid submit -->
-  <form @submit.prevent="handleSubmit" class="my-4">
+  <form @submit.prevent="handleSubmit" class="my-4" ref="travelForm">
     <!-- Visa rubrik beroende på om formuläret används för redigering eller lägg till -->
     <h3 class="mb-4">{{ isEditing ? 'Uppdatera resa' : 'Lägg till ny resa' }}</h3>
     <div class="mb-3">
@@ -247,6 +247,10 @@ export default {
         description: '',
       };
       this.isEditing = false; // Återställ redigeringsläge
+    },
+    // Metod för att scrolla till formuläret
+    scrollToForm() {
+      this.$refs.travelForm.scrollIntoView({ behavior: "smooth" });
     },
   },
   mounted() {

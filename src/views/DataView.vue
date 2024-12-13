@@ -3,7 +3,7 @@
     <h2 class="text-center">Resor</h2>
     <!-- Formulär för att lägga till eller redigera en resa, skicka med travelToEdit-objektet till formuläret -->
     <!-- Använd travelAdded-eventet för att visa lyckat meddelande -->
-    <TravelForm @travelAdded="handleAddedTravel" :travelToEdit="travelToEdit" />
+    <TravelForm ref="travelForm" @travelAdded="handleAddedTravel" :travelToEdit="travelToEdit" />
     <!-- Visa eventuella fel -->
     <div v-if="errors.length" class="alert alert-danger mt-3">
       <ul>
@@ -88,6 +88,8 @@ export default {
         ...travel, // Kopiera travel-objektet
         visitDate: travel.visitDate ? new Date(travel.visitDate).toISOString().split('T')[0] : '' // Formatera datumet till ÅÅÅÅ-MM-DD eller tom sträng
       };
+      // Scrolla upp till formuläret
+      this.$refs.travelForm.scrollToForm();
     },
     // Metod för att hantera tillagd eller uppdaterad resa (success-meddelanden)
     handleAddedTravel(action) {
